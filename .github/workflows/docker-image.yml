@@ -2,9 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "latest","management","delayed-exchange","stomp","delayed-exchange_stomp" ]
 
 jobs:
 
@@ -22,6 +20,6 @@ jobs:
     - name: test
       run: echo ${{ github.ref_name }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mayan31370/docker-image-rabbitmq:3.9-management
+      run: docker build . --file Dockerfile --tag mayan31370/docker-image-rabbitmq:${{ github.ref_name }}
     - name: Push the Docker image
-      run: docker push mayan31370/docker-image-rabbitmq:3.9-management
+      run: docker push mayan31370/docker-image-rabbitmq:${{ github.ref_name }}
