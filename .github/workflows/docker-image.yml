@@ -19,6 +19,8 @@ jobs:
       with:
         username: mayan31370
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: test
+      run: echo ${{ github.ref_name }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag mayan31370/docker-image-rabbitmq:3.9-management
     - name: Push the Docker image
